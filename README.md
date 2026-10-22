@@ -1,129 +1,228 @@
 # Sixth Sense — MemoryLoop AI
 
-**A cognitive-support prototype exploring guided memory rehearsal for people living with dementia or memory difficulties.**
+**A cognitive-support prototype exploring structured memory rehearsal for people living with dementia or memory difficulties.**
 
-[**Open the live demo**](https://nikhilasds25-bit.github.io/sixth-sense/) · [View this repository](https://github.com/nikhilasds25-bit/sixth-sense)
+[Live Demo](https://nikhilasds25-bit.github.io/sixth-sense/) | [GitHub Repository](https://github.com/nikhilasds25-bit/sixth-sense)
 
-> **Important:** MemoryLoop AI is an educational prototype. It is not a medical device, clinical assessment, diagnostic system, treatment, or clinically validated product. Its demo data and results are synthetic and do not establish medical benefit.
+> **Project Disclaimer:** MemoryLoop AI is an educational and experimental prototype. It is not a medical device, diagnostic system, treatment, or clinically validated product. The public demonstration uses synthetic data and simulated interactions. No clinical benefit is claimed.
 
-## 1. What problem is this project exploring?
+## 1. Problem Statement
 
-Everyday plans often involve remembering several connected details: **where to go, when to go, what the plan is, and what to bring**. For some people living with dementia or memory difficulties, keeping these details in mind and recalling them at the right moment can be challenging. A conventional reminder may display information, but it may not give someone a simple, supportive opportunity to rehearse the plan beforehand.
+Remembering everyday plans often requires retaining several connected details, including appointments, times, destinations, and items to bring. For some people living with dementia or memory difficulties, recalling these details at the appropriate moment can be challenging.
 
-MemoryLoop AI explores a design question:
+Conventional reminder systems primarily communicate information at a scheduled time. They may not provide a structured opportunity to revisit and practise recalling a plan beforehand.
 
-**Could a short, repeatable, personalized practice loop make an everyday plan easier to revisit and understand?**
+MemoryLoop AI explores an alternative interaction concept: **a structured, repeatable memory-rehearsal workflow that allows users to revisit everyday plans through short questions, supportive feedback, and caregiver-assisted task preparation.**
 
-The project is intended to explore supportive interaction—not to claim that a software prototype can prevent memory loss, treat dementia, or replace family members, caregivers, or healthcare professionals.
+The project investigates how a simple digital interface could organise this process while prioritising clarity, accessibility, explainable logic, and caregiver involvement.
 
-## 2. What does the app do?
+The prototype does not claim to prevent memory loss, treat dementia, or replace professional healthcare and personal care.
 
-The concept connects three perspectives around a fictional everyday task:
+## 2. Project Overview
 
-- **Patient view:** reviews a sample appointment, practices recalling a detail, receives simple rule-based feedback, and can optionally hear the question using the browser's built-in speech synthesis when available.
-- **Caregiver view:** builds a fictional practice task using predefined sample events, times, items, and questions, then reviews the demo's interaction summaries.
-- **Clinician showcase:** displays illustrative, synthetic practice summaries and explains the simple rule used to choose a follow-up question. It is a demonstration screen, not a secure clinical dashboard.
+MemoryLoop AI is designed around a guided interaction cycle:
 
-The intended loop is:
+**Prepare a plan → Practise recall → Review feedback → Revisit important details**
 
-1. **Prepare a plan** using a fictional event and a few details.
-2. **Rehearse recall** with one short question at a time.
-3. **Review feedback** based on configured sample answers.
-4. **Choose a detail to revisit** using an explainable rule.
-5. **Simulate reminder stages** to demonstrate how a future reminder workflow might look.
+The prototype brings together three user perspectives.
 
-The public demo does not send actual reminders or run a real-time scheduler. Its reminder stages advance when a user clicks a control.
+### Patient Interface
 
-## 3. What has been built?
+The patient-facing interface demonstrates how a person might interact with a prepared memory-rehearsal task.
 
-### Public recruiter demo
+Features include:
+- Viewing fictional appointments and everyday plans.
+- Answering short questions about selected task details.
+- Receiving feedback based on configured sample answers.
+- Hearing questions through browser-based text-to-speech when supported.
+- Exploring simulated reminder stages and task acknowledgements.
 
-The live website is a static showcase built with HTML, CSS, and vanilla JavaScript. It contains:
+### Caregiver Interface
 
+The caregiver-facing interface demonstrates how a supporter could prepare and review practice activities.
+
+Features include:
+- Creating fictional appointments using predefined options.
+- Selecting sample events, times, items, and questions.
+- Reviewing synthetic interaction summaries.
+- Exploring how task preparation and practice history could be organised.
+
+### Clinician Showcase
+
+The clinician-facing showcase illustrates how practice information and decision logic might be presented for review.
+
+Features include:
+- Displaying synthetic interaction summaries.
+- Presenting illustrative response categories and concept coverage.
+- Explaining the rule used to select a follow-up question.
+- Providing visibility into the prototype's decision-making logic.
+
+This page is a demonstration interface, not a secure clinical dashboard, patient registry, or diagnostic assessment tool.
+
+## 3. How the Prototype Works
+
+The public demonstration follows a sequence of interactions:
+
+1. **Task preparation:** A caregiver selects a fictional appointment and its associated details.
+2. **Memory rehearsal:** The patient interface presents a question about one aspect of the selected plan.
+3. **Response evaluation:** JavaScript rules compare the entered response against configured sample concepts.
+4. **Follow-up selection:** An explainable rule prioritises a question category with lower recent coverage in the synthetic demo history.
+5. **Interaction review:** The resulting summary is displayed in the caregiver and clinician showcase pages.
+6. **Reminder simulation:** Users manually advance through demonstration reminder stages.
+
+The answer evaluation and follow-up selection in the public demo are deterministic and rule-based. They do not use a trained clinical model. The reminder controls demonstrate a possible workflow but do not schedule or deliver real notifications.
+
+## 4. Implementation and Features
+
+The project currently has two distinct implementations.
+
+### Public Recruiter Demonstration
+
+The hosted version is a static web application built with HTML, CSS, and vanilla JavaScript.
+
+Implemented features include:
 - A project overview and guided walkthrough.
 - Separate patient, caregiver, and clinician showcase pages.
-- Predefined synthetic scenarios and tasks.
-- Browser-side, rule-based answer matching.
-- An explainable rule for selecting a practice question based on recent demo coverage.
-- Simulated reminder stages and acknowledgement interactions.
-- Shared synthetic demo state across pages in the same browser profile.
-- A reset control to restore the demo state.
-- Responsive layouts, visible keyboard focus, form labels, skip navigation, and status announcements for assistive technology.
+- Predefined synthetic tasks and scenarios.
+- Browser-side answer evaluation.
+- Explainable follow-up question selection.
+- Simulated reminder and acknowledgement interactions.
+- Shared demonstration state across pages within the same browser profile.
+- A reset function for restoring the sample state.
+- Responsive layouts and keyboard-accessibility features, including visible focus indicators, form labels, and skip navigation.
 
-The demo has been checked for basic page navigation, JavaScript syntax, local interactions, responsive behavior, and absence of network/API requests. These checks are not a clinical or formal accessibility certification.
+The public demonstration has undergone basic checks for page navigation, JavaScript syntax, local interactions, responsive layouts, and network/API request behaviour. These checks do not constitute formal accessibility certification or clinical validation.
 
-### Full local application
+### Full Local Application
 
-A separate local version has been developed around a **Python/FastAPI backend and SQLite**. Its intended application architecture includes:
+A separate development version uses a Python-based backend architecture.
 
-- API endpoints and role/session handling.
-- Persistent local storage for application data such as tasks, profiles, and interaction summaries.
-- Deterministic answer evaluation.
-- Rule-based selection of a follow-up practice question.
-- An optional local speech-transcription path using faster-whisper in the development setup.
+The local application includes or explores:
+- FastAPI for backend endpoints.
+- SQLite for local application data persistence.
+- Application-level session and role handling.
+- Deterministic response evaluation.
+- Rule-based follow-up question selection.
+- An optional faster-whisper speech-transcription path in the local development environment.
 
-The local application's complete backend is **not currently included in this public GitHub repository and is not running behind the hosted demo**. The exact set of backend features available depends on the local version and its configuration; the GitHub Pages site must not be presented as if it were connected to that backend.
+The precise functionality available depends on the local application's current implementation and configuration.
 
-## 4. Where is the backend?
+**The full local backend is not included in this public repository and is not connected to the hosted website.** The public demonstration is a separate, browser-only implementation intended to provide a safe and accessible project showcase.
 
-There are two separate editions:
+## 5. System Architecture
 
-| Edition | Where it runs | What it uses |
+The project separates the hosted demonstration from the local application.
+
+| Component | Public demonstration | Local application |
 |---|---|---|
-| Public website | GitHub Pages | Static HTML, CSS, JavaScript, and browser-local synthetic state |
-| Full development application | Local development environment | Python/FastAPI, SQLite, and optional local speech tooling |
+| Frontend | HTML, CSS, JavaScript | Local application interface |
+| Backend | None | Python and FastAPI |
+| Data storage | Browser local storage | SQLite |
+| Response evaluation | JavaScript rules | Deterministic application logic |
+| Follow-up selection | Explainable JavaScript rule | Rule-based application logic |
+| Speech functionality | Optional browser text-to-speech | Optional local faster-whisper path |
+| Reminder delivery | Simulated manually | Depends on the implemented local configuration |
 
-**The live site does not have a server-side backend.** It does not connect to FastAPI, SQLite, an AI API, a patient database, or a real notification service. The local backend remains separate from this public repository, so visitors cannot run or inspect its source from this repo yet.
+### Why Is the Backend Not Published?
 
-This separation is deliberate for the portfolio demo: it avoids publishing a database, personal records, credentials, or a backend service that has not been prepared for public deployment. Before publishing the backend, it should be reviewed for secrets and sensitive data, supplied with synthetic test fixtures, documented, tested, and deployed with appropriate authentication and security controls.
+The public website is hosted on GitHub Pages, which serves static files. It does not run the Python backend or connect to the local SQLite database.
 
-## 5. Why green and white?
+Keeping the backend separate avoids exposing an unreviewed database, potentially sensitive information, credentials, or development configuration. Publishing a backend would require a separate review, reproducible setup instructions, synthetic test data, appropriate security controls, and a suitable hosting environment.
 
-The interface uses a **teal-green and white visual system** as a considered design choice for a calm, uncluttered experience. It is a design rationale, not a claim that these colors are clinically proven to help every person with dementia.
+The public site does not provide accounts, server-side persistence, remote AI services, or real notification delivery.
 
-- **Teal/green accents** are intended to feel calm and supportive and to create a consistent visual identity.
-- **White cards and a very light green-tinted background** separate information into clear sections without adding heavy visual decoration.
-- **Dark teal text on light backgrounds** provides strong visual contrast for reading.
-- **Muted supporting text and borders** help organize content while keeping the main question or action prominent.
-- **Amber** is used for cautionary or explanatory notices; **red** is reserved for error or danger states; a distinct **blue focus outline** helps show keyboard focus.
+## 6. User Interface and Design Rationale
 
-The current main palette includes dark teal-green (#145C53), deeper teal (#0C443D), white (#FFFFFF), a pale green-tinted page background (#F3F7F6), and a soft mint surface (#E5F2EE).
+The interface uses a teal-green, white, and light-neutral colour palette to create a consistent, uncluttered visual experience.
 
-The broader accessibility choices are just as important as color: plain language, one main question at a time, consistent navigation, visible labels, generous spacing, responsive sizing, and keyboard focus indicators. Color preferences, contrast needs, vision, and cognitive needs vary from person to person; this design should be evaluated with people with lived experience and accessibility specialists before making a real-care claim.
+The palette is a design decision rather than a clinically validated intervention. Its purpose is to support a clear visual hierarchy and a calm presentation.
 
-## 6. How to try the live demo
+### Colour Palette
 
-1. Open the [MemoryLoop AI demo](https://nikhilasds25-bit.github.io/sixth-sense/).
-2. Choose **Patient demo** and select a fictional appointment.
-3. Answer a sample question and inspect the rule-based feedback.
-4. Open **Caregiver demo** to create a sample task from the predefined options.
-5. Open **Clinician showcase** to see how synthetic interaction summaries and the question-selection rule are displayed.
-6. Use **Reset demo** to restore the sample state.
+| Colour | Hex value | Design purpose |
+|---|---|---|
+| Primary teal-green | `#145C53` | Primary actions and visual identity |
+| Deep teal | `#0C443D` | Stronger emphasis and dark surfaces |
+| White | `#FFFFFF` | Card backgrounds and content separation |
+| Pale neutral green | `#F3F7F6` | Main page background |
+| Soft mint | `#E5F2EE` | Subtle highlights and selected states |
+| Amber | `#FFF4DE` | Cautionary and explanatory notices |
 
-The demo's shared state is stored locally in the current browser profile. It is not synced between different devices or browsers.
+### Design Principles
 
-## 7. Technology overview
+The interface emphasises:
+- **Clarity:** Short instructions and one main question at a time.
+- **Consistency:** Repeated navigation, layouts, and interaction patterns.
+- **Readability:** Dark text on light backgrounds and clearly separated content.
+- **Reduced visual complexity:** Restrained decoration and generous spacing.
+- **Accessibility:** Visible keyboard focus, labelled controls, responsive layouts, and semantic page structure.
+- **Predictability:** Clear feedback and explicit controls for advancing or resetting the demonstration.
 
-**Public demo:** HTML5, CSS, vanilla JavaScript, browser local storage, and optional browser text-to-speech.
+These principles are intended to make the interface easier to navigate. Their effectiveness for people with dementia or other cognitive difficulties would need to be evaluated through accessibility testing and feedback from people with relevant lived experience.
 
-**Local application:** Python, FastAPI, SQLite, deterministic evaluation and selection rules, with optional faster-whisper speech transcription in the local development setup.
+## 7. Technology Stack
 
-The hosted site does not use a large language model, retrieval-augmented generation service, or trained clinical prediction model. Its answer matching and follow-up selection are simple, inspectable rules.
+### Public Demonstration
 
-## 8. Privacy, safety, and limitations
+- HTML5
+- CSS3
+- Vanilla JavaScript
+- Browser local storage
+- Browser text-to-speech, when supported
 
-- Use only the fictional sample data in the public demo.
-- Do not enter real patient details, personal health information, passwords, or confidential information.
-- The public demo does not create accounts, contact caregivers, send notifications, or provide protected clinical records.
-- Demo answer text is evaluated in the browser and discarded; the demo stores only limited synthetic result information locally.
-- The clinician page presents illustrative demo summaries, not validated clinical scores.
-- This project has not been clinically validated and must not be used to diagnose, monitor, or make treatment decisions about a real person.
+### Local Development Application
 
-## 9. Future work
+- Python
+- FastAPI
+- SQLite
+- Deterministic response evaluation
+- Rule-based follow-up question selection
+- Optional faster-whisper speech transcription
 
-Potential next steps include publishing a reviewed version of the backend, adding documented setup instructions and synthetic test data, deploying a protected API, connecting the interface through secure configuration, improving accessibility with user testing, and evaluating the interaction design with caregivers and people with relevant lived experience. Any real-world healthcare use would require appropriate clinical, privacy, security, and regulatory review.
+The hosted demonstration does not use a large language model, retrieval-augmented generation service, or trained clinical prediction model. Its interactive behaviour is implemented through client-side JavaScript and transparent rules.
+
+## 8. Privacy and Safety
+
+The public demonstration is designed to operate with synthetic sample data.
+
+- Do not enter real patient details or personal health information.
+- The public website does not create accounts or provide secure clinical access.
+- Typed answers are evaluated in the browser and discarded.
+- Only limited synthetic result information is retained in browser-local storage.
+- Demonstration state is not synchronised between devices or browsers.
+- Reminder stages are simulated and do not trigger real notifications.
+- The clinician showcase displays illustrative demo summaries, not validated clinical scores.
+
+MemoryLoop AI must not be used to diagnose dementia, monitor a real patient's condition, make treatment decisions, or replace professional healthcare.
+
+## 9. Testing and Validation Status
+
+The public demonstration has undergone basic functional and interface checks, including navigation, interaction flows, JavaScript syntax, responsive behaviour, and verification that the static demo does not make API requests.
+
+These checks establish basic software behaviour only. They do not demonstrate clinical effectiveness, improved memory performance, diagnostic accuracy, or suitability for real-world healthcare use.
+
+Clinical evaluation and usability testing with appropriate participants would be necessary before making claims about real-world benefits.
+
+## 10. Future Development
+
+Potential future work includes:
+
+- Reviewing and publishing the local backend with setup documentation.
+- Adding reproducible synthetic fixtures and automated tests.
+- Deploying a backend with appropriate authentication and security controls.
+- Connecting the frontend to a securely configured API.
+- Improving accessibility through structured usability testing.
+- Exploring additional personalisation and speech-interaction capabilities.
+- Evaluating the interaction design with caregivers and people with relevant lived experience.
+
+Any deployment for actual healthcare use would require appropriate clinical, privacy, security, accessibility, and regulatory review.
+
+## Project Status
+
+**Current status:** Interactive portfolio prototype with a publicly hosted static demonstration. The full backend remains local and separate from the hosted website.
+
+MemoryLoop AI demonstrates a structured memory-rehearsal concept, multiple user perspectives, browser-side interaction logic, and explainable rule-based behaviour. It provides a foundation for further software engineering, accessibility evaluation, and responsible exploration of cognitive-support technologies.
 
 ---
 
-**Project status:** Interactive portfolio prototype with a public static demo; the full backend remains local and separate.
-
+**Developed as an educational technology prototype exploring structured and accessible memory-rehearsal interactions.**
