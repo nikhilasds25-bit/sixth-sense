@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>MemoryLoop AI | Interactive Portfolio Demo</title>
+  <link rel="stylesheet" href="demo.css">
+  <script src="demo-state.js" defer></script>
+  <script src="demo-ui.js" defer></script>
+</head>
+<body data-page="landing">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="MemoryLoop AI home">
+      <span class="brand-mark" aria-hidden="true">M</span>
+      <span>MemoryLoop <span class="brand-light">AI</span></span>
+    </a>
+    <nav class="primary-nav" aria-label="Main navigation">
+      <a href="index.html" aria-current="page">Overview</a>
+      <a href="patient.html">Patient demo</a>
+      <a href="caregiver.html">Caregiver demo</a>
+      <a href="clinician.html">Clinician showcase</a>
+    </nav>
+    <button class="button button-small button-outline reset-button" type="button" data-reset-demo>Reset demo</button>
+  </header>
+  <main id="main" class="page-shell">
+    <section class="hero hero-grid" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">A memory-support concept for everyday life</p>
+        <h1 id="hero-title">Don't just remind.<br><span>Rehearse. Remember. Act.</span></h1>
+        <p class="hero-lede">MemoryLoop AI explores how a small, personalized rehearsal before an everyday event could help a person remember where they are going, when they need to leave, and what to bring.</p>
+        <div class="button-row">
+          <a class="button button-primary" href="patient.html">Explore the demo <span aria-hidden="true">→</span></a>
+          <a class="button button-light" href="https://github.com/nikhilas7680-gif/SIXTH-SENSE-memoryloop-ai" target="_blank" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a>
+        </div>
+        <p class="hero-caption">A portfolio prototype—not a medical product or a substitute for care.</p>
+      </div>
+      <aside class="demo-notice" aria-label="Hosted demo limitations">
+        <span class="notice-icon" aria-hidden="true">i</span>
+        <div>
+          <h2>Hosted edition: interactive synthetic demo</h2>
+          <p>This GitHub Pages edition runs in your browser. It has no backend, accounts, patient records, AI service, transcription model, or real reminder delivery.</p>
+          <p>Changes are shared between these demo pages in this browser profile only. Reset clears this demo's browser storage.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section-block" aria-labelledby="problem-title">
+      <div class="section-heading">
+        <p class="eyebrow">The problem space</p>
+        <h2 id="problem-title">A reminder can be easy to miss.<br>Practice makes the plan visible.</h2>
+        <p>Remembering a future intention—an appointment, its time, and the items needed—can be demanding. MemoryLoop is a prototype for rehearsing that plan with familiar, simple prompts and supportive feedback.</p>
+      </div>
+      <div class="feature-grid three-up">
+        <article class="feature-card">
+          <span class="feature-number">01</span>
+          <h3>Patient experience</h3>
+          <p>Review a sample appointment, answer a short recall question, and hear browser-generated speech if available.</p>
+          <a class="text-link" href="patient.html">Open patient demo →</a>
+        </article>
+        <article class="feature-card">
+          <span class="feature-number">02</span>
+          <h3>Caregiver planning</h3>
+          <p>Create an allowlisted synthetic task, choose needed items and a question, then review the shared demo history.</p>
+          <a class="text-link" href="caregiver.html">Open caregiver demo →</a>
+        </article>
+        <article class="feature-card">
+          <span class="feature-number">03</span>
+          <h3>Clinician showcase</h3>
+          <p>Explore synthetic practice observations and the transparent rule used to choose a follow-up question.</p>
+          <a class="text-link" href="clinician.html">Open clinician showcase →</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-block split-section" aria-labelledby="approach-title">
+      <div>
+        <p class="eyebrow">The rehearsal loop</p>
+        <h2 id="approach-title">One plan, revisited with care.</h2>
+        <ol class="step-list">
+          <li><span>1</span><div><strong>Make a plan</strong><p>A caregiver chooses a fictional event, time, destination and items.</p></div></li>
+          <li><span>2</span><div><strong>Practice recall</strong><p>The patient sees a short question and can type a response.</p></div></li>
+          <li><span>3</span><div><strong>Explain the result</strong><p>Simple deterministic rules show which configured concepts matched.</p></div></li>
+          <li><span>4</span><div><strong>Choose what to revisit</strong><p>An explainable demo rule prioritizes an incomplete category next.</p></div></li>
+        </ol>
+      </div>
+      <aside class="principle-card">
+        <p class="eyebrow">Design principle</p>
+        <h3>Supportive, not diagnostic.</h3>
+        <p>Practice feedback in this prototype describes only the configured sample answer. It is not a cognitive assessment, diagnosis, prediction, or measure of treatment benefit.</p>
+        <p class="principle-foot">The project does not claim a validated clinical outcome.</p>
+      </aside>
+    </section>
+
+    <section class="section-block" aria-labelledby="architecture-title">
+      <div class="section-heading">
+        <p class="eyebrow">Two editions, clearly separated</p>
+        <h2 id="architecture-title">The real local app has a backend.<br>This hosted demo does not.</h2>
+        <p>The existing application is a local FastAPI prototype. This portfolio edition is a separate static experience designed to work on GitHub Pages without exposing or calling that application.</p>
+      </div>
+      <div class="architecture-grid">
+        <article class="architecture-card real-architecture">
+          <span class="architecture-label">Existing local application</span>
+          <div class="architecture-flow">
+            <div class="architecture-node">Caregiver · patient · clinician<br><small>HTML / CSS / JavaScript</small></div>
+            <span aria-hidden="true">↓</span>
+            <div class="architecture-node">FastAPI<br><small>Signed sessions · role checks · APIs</small></div>
+            <span aria-hidden="true">↓</span>
+            <div class="architecture-node">SQLite<br><small>Tasks · interactions · profiles</small></div>
+            <div class="architecture-side">Deterministic answer evaluation<br>Rule-based adaptive question selection<br>Optional local faster-whisper voice path</div>
+          </div>
+          <p class="small-note">Runs locally when deliberately started. Its APIs, model, database, accounts and scheduler are not part of this public site.</p>
+        </article>
+        <article class="architecture-card hosted-architecture">
+          <span class="architecture-label">GitHub Pages portfolio demo</span>
+          <div class="architecture-flow">
+            <div class="architecture-node">Static HTML · CSS · JavaScript</div>
+            <span aria-hidden="true">↔</span>
+            <div class="architecture-node">Versioned synthetic demo state<br><small>Local browser storage only</small></div>
+          </div>
+          <p class="small-note">No API calls, no authentication, no remote service, no cloud database, and no actual scheduled reminders. Refresh preserves only allowlisted synthetic demo state in this browser.</p>
+        </article>
+      </div>
+      <p class="disclosure"><strong>AI disclosure:</strong> the local application's core question evaluation and adaptive selection are deterministic rules; this hosted demo uses a smaller JavaScript-only simulation. No LLM, RAG, model training, or reinforcement-learning service powers this site.</p>
+    </section>
+
+    <section class="guided-card" aria-labelledby="guided-title">
+      <div>
+        <p class="eyebrow">Recruiter walkthrough · about 2 minutes</p>
+        <h2 id="guided-title">See the loop end to end.</h2>
+        <p>Start with the patient view, answer a question, then check the caregiver history and clinician showcase. The same synthetic state follows you across pages.</p>
+      </div>
+      <ol class="walkthrough-list">
+        <li><strong>Patient</strong><span>Try a text answer and inspect feedback.</span></li>
+        <li><strong>Caregiver</strong><span>Create a sample appointment and simulate a reminder.</span></li>
+        <li><strong>Clinician</strong><span>Review shared demo observations and the selection explanation.</span></li>
+      </ol>
+      <a class="button button-primary" href="patient.html">Start the walkthrough →</a>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <span>MemoryLoop AI · portfolio demonstration</span>
+    <span>Public synthetic data only · no clinical claims</span>
+  </footer>
+  <div class="toast-region" role="status" aria-live="polite" aria-atomic="true" data-toast></div>
+</body>
+</html>
